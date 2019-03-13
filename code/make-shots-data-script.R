@@ -1,7 +1,7 @@
-## Data Preparation
-#### Description: The goal of this script is to create a csv data file that will contain all the required variables used in the data visualization phase.
-#### Inputs: The five data CSV files (one for each player)
-#### Outputs:
+# Title: Data Preparation
+# Description: The goal of this script is to create a csv data file that will contain all the required variables used in the data visualization phase.
+# Inputs: The five data CSV files (one for each player) and the stacked csv file.
+# Outputs: The summaries of each of the five data csv files and the stacked csv file.
 library(stringr)
 library(dplyr)
 col_types = c("character", "character", "integer", "integer", "integer", "integer", "factor","character","factor","integer","character", "integer", "integer")
