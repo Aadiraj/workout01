@@ -1,5 +1,6 @@
 ---
 title: "workout01-aadiraj-batlaw"
+author: "Aadiraj Batlaw"
 output: github_document
 ---
 
@@ -23,4 +24,28 @@ dat <- read.csv("klay-thompson.csv", stringsAsFactors = F)
 url = "https://github.com/ucb-stat133/stat133-hws/raw/master/data/stephen-curry.csv"
 download.file(url = url, destfile = "stephen-curry.csv")
 dat <- read.csv("stephen-curry.csv", stringsAsFactors = F)
+```
+
+```{r, include=T}
+library(dplyr)
+shots <- read.csv("../data/shots-data.csv", stringsAsFactors = F)
+two_point <- select(filter(shots, shot_type == "2PT Field Goal"), name, shot_made_flag)
+
+two_points = two_point %>%
+  group_by(name) %>%
+  summarise(total = n(), made = sum(shot_made_flag == "shot_yes")) 
+two_points <- arrange(mutate(two_points, perc_made = made/total), desc(perc_made))
+
+three_point <- select(filter(shots, shot_type == "3PT Field Goal"), name, shot_made_flag)
+three_points = three_point %>%
+  group_by(name) %>%
+  summarise(total = n(), made = sum(shot_made_flag == "shot_yes")) 
+three_points <- arrange(mutate(three_points, perc_made = made/total), desc(perc_made))
+
+overall <- select(shots, name, shot_made_flag)
+overall_points = overall %>%
+  group_by(name) %>%
+  summarise(total = n(), made = sum(shot_made_flag == "shot_yes")) 
+overall_points <- arrange(mutate(overall_points, perc_made = made/total), desc(perc_made))
+
 ```

@@ -67,10 +67,5 @@ facetted <- ggplot(data = stacked) +
   ggtitle("Shot Charts (2016 Season)") +
   theme_minimal() + facet_wrap(name ~.)
 facetted
-
-pdf(file = "../images/gsw-shot-charts.pdf", width = 8, height = 7)
-facetted
-dev.off()
-png(file = "../images/gsw-shot-charts.png", width = 8, height = 7)
-facetted
-dev.off()
+ggsave("../images/gsw-shot-charts.pdf", facetted, width = 8, height = 7)
+ggsave("../images/gsw-shot-charts.png", facetted, width = 8, height = 7)
